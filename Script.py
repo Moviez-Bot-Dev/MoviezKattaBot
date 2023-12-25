@@ -2,10 +2,10 @@ class script(object):
     START_TXT = """Hello {},
 Myself <a href=https://t.me/{}>{}</a>,\n\nTrust me ! I can't even imagine how super-fast i can drive your Database channel \n\nAre you ready for Long Drive Sweetheart...🤪"""
     MZTHMB_TEXT = """Hello {},
-Glad to see you here. It seems that you really love <a href=https://t.me/Updated_Mania >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Updated_Maniaer>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
+Glad to see you here. It seems that you really love <a href=https://t.me/Updated_Mania >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Updated_Mania>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
     """
     MZLINK_TEXT = """Hey {},
-Glad to see you here. It seems that you really love <a href=https://t.me/Updated_Mania >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Updated_Maniaer>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
+Glad to see you here. It seems that you really love <a href=https://t.me/Updated_Mania >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Updated_Mania>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
     """
     DNT_TEXT = """Hey sweetie {},
 Thanks for thinking about us.\nIt seems that you really love <a href=https://t.me/Updated_Mania >Moviez Mania Updates</a> work.\n\n<b>For your kind information, we do not ask or force anyone for any kind of payment</b>. But if you really want to donate us then you can send money to us from below links...\n\n💵 Reach Donation Page : <a href=http://t.me/Updated_Mania/5>Click here...</a>\n\n❤️Thank you so much..

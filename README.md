@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://telegra.ph/file/28bdb9142a6487c4a0a65.jpg" alt="Moviez Katta Logo">
+  <img src="https://telegra.ph/file/ada9a4b5269fddc15fa66.jpg" alt="Moviez Katta Logo">
 </p>
 <h1 align="center">
   <b> Moviez Katta Bot </b>

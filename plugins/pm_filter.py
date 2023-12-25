@@ -673,7 +673,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🙆🏻 Help 🦾', callback_data='help'),
             InlineKeyboardButton('♥️ About ♥️', callback_data='about')
         ],[
-            InlineKeyboardButton('SUBSCRIBE ❣️', url='https://youtube.com/@Moviez-Mania')
+            InlineKeyboardButton('SUBSCRIBE ❣️', url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -803,7 +803,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -831,7 +831,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
             ]]
             btn_lzdv = [
                 [
@@ -858,7 +858,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -886,7 +886,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
             ]]
             btn_lzdv = [
                 [
@@ -913,7 +913,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -941,7 +941,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
             ]]
             btn_lzdv = [
                 [
@@ -968,7 +968,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@Moviez-Mania")
+                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
 
             ]]
             btn_lzdv = [

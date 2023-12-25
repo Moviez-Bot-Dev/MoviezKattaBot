@@ -28,7 +28,7 @@ async def start(client, message):
             [
                 InlineKeyboardButton('🙆🏻 Help 🦾', url=f"https://t.me/{temp.U_NAME}?start=help"),
             ],[
-            InlineKeyboardButton('SUBSCRIBE ❣️', url='https://youtube.com/@Moviez-Mania')
+            InlineKeyboardButton('SUBSCRIBE ❣️', url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
             ],
             [
                 InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME,url=DOWNLOAD_TEXT_URL)
@@ -55,7 +55,7 @@ async def start(client, message):
             InlineKeyboardButton('🙆🏻 Help 🦾', callback_data='help'),
             InlineKeyboardButton('♥️ About ♥️', callback_data='about')
             ],[
-            InlineKeyboardButton('SUBSCRIBE ❣️', url='https://youtube.com/@Moviez-Mania')
+            InlineKeyboardButton('SUBSCRIBE ❣️', url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -79,7 +79,7 @@ async def start(client, message):
             ],
              [
                 InlineKeyboardButton(
-                    "🦋 SUBSCRIBE YT Channel 🦋", url='https://youtube.com/@Moviez-Mania'
+                    "🦋 SUBSCRIBE YT Channel 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}"
                 )
             ]
         ]
@@ -108,7 +108,7 @@ async def start(client, message):
             InlineKeyboardButton('🙆🏻 Help 🦾', callback_data='help'),
             InlineKeyboardButton('♥️ About ♥️', callback_data='about')
         ],[
-            InlineKeyboardButton('SUBSCRIBE ❣️', url='https://youtube.com/@Moviez-Mania')
+            InlineKeyboardButton('SUBSCRIBE ❣️', url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(

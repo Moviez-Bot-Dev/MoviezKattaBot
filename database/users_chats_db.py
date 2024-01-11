@@ -1,5 +1,6 @@
 # https://github.com/odysseusmax/animated-lamp/blob/master/bot/database/database.py
 import motor.motor_asyncio
+import datetime
 from info import DATABASE_NAME, DATABASE_URI, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, P_TTI_SHOW_OFF, SINGLE_BUTTON, SPELL_CHECK_REPLY, PROTECT_CONTENT
 
 class Database:
@@ -11,12 +12,17 @@ class Database:
         self.grp = self.db.groups
 
     def new_user(self, id, name):
-        return dict(
+        return dict(    
             id = id,
             name = name,
             _id=int(id),                                   
             file_id=None,
             caption=None,
+            mania_caption=None,
+            join_date=datetime.date.today().isoformat(),
+            apply_caption=True,
+            upload_as_doc=False,
+            thumbnail=None,
             ban_status=dict(
                 is_banned=False,
                 ban_reason="",
@@ -136,12 +142,39 @@ class Database:
     async def get_all_chats(self):
         return self.grp.find({})
 
-
     async def get_db_size(self):
         return (await self.db.command("dbstats"))['dataSize']
     
-    # Credit @Mania24SupportBot.
+    async def set_apply_caption(self, id, apply_caption):
+        await self.col.update_one({'id': id}, {'$set': {'apply_caption': apply_caption}})
 
+    async def get_apply_caption(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('apply_caption', True)
+
+    async def set_upload_as_doc(self, id, upload_as_doc):
+        await self.col.update_one({'id': id}, {'$set': {'upload_as_doc': upload_as_doc}})
+
+    async def get_upload_as_doc(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('upload_as_doc', False)
+
+    async def set_mania_thumbnail(self, id, thumbnail):
+        await self.col.update_one({'id': id}, {'$set': {'thumbnail': thumbnail}})
+
+    async def get_mania_thumbnail(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('thumbnail', None)
+
+    async def get_mania_caption(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('mania_caption', None)
+
+    async def get_user_data(self, id) -> dict:
+        user = await self.col.find_one({'id': int(id)})
+        return user or None
+        
+    # Thank you @Mania24SupportBot 
     async def set_thumbnail(self, id, file_id):
         await self.col.update_one({'id': int(id)}, {'$set': {'file_id': file_id}})
         
@@ -154,7 +187,6 @@ class Database:
                 return None
         except Exception as e:
             print(e)
-    # Born to make history @Mania24SupportBot ! => Remember this name forever <=
 
     async def set_caption(self, id, caption):
         await self.col.update_one({'id': int(id)}, {'$set': {'caption': caption}})

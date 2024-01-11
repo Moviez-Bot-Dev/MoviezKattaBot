@@ -1,6 +1,13 @@
 import re
 from os import getenv, environ
+import logging
 
+logging.basicConfig(
+    format='%(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.FileHandler('log.txt'),
+              logging.StreamHandler()],
+    level=logging.INFO
+)
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
     if value.lower() in ["true", "yes", "1", "enable", "y"]:
@@ -65,7 +72,7 @@ REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
 ADMIN_USRNM = environ.get('ADMIN_USRNM','X_Mania_X') # WITHOUT @
 MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Updated_Mania') # WITHOUT @
 DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Updated_Mania') # WITHOUT @
-MANIA_YT_HANDLE = environ.get('MANIA_YT_HANDLE','Moviez-Mania')  # WITHOUT @ [  add only handle - don't add full url  ] 
+MANIA_IG_HANDLE = environ.get('MANIA_IG_HANDLE','Movie_Z_Mania')  # WITHOUT @ [  add only handle - don't add full url  ] 
 MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "Mania_Request") #[ without @ ]
 
 # Url Shortner
@@ -77,8 +84,6 @@ mania_groups = environ.get('MANIA_GROUPS','')
 MANIA_GROUPS = [int(mania_groups) for mania_groups in mania_groups.split()] if mania_groups else None # ADD GROUP ID IN THIS VARIABLE
 my_users = [int(my_users) if id_pattern.search(my_users) else my_users for my_users in environ.get('MY_USERS', '').split()]
 MY_USERS = (my_users) if my_users else []
-
-
 
 # Online Stream and Download
 PORT = int(environ.get('PORT', 8080))
@@ -110,7 +115,25 @@ if HAS_SSL:
     URL = "https://{}/".format(FQDN)
 else:
     URL = "http://{}/".format(FQDN)
-REPO_OWNER = "Moviez-Bot-Dev"
+BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001987654567")).split())) 
+OWNER_USERNAME = "Moviez-Bot-Dev"
+
+
+# URL UPLOADING
+BANNED_USERS = set(int(x) for x in environ.get("BANNED_USERS", "").split())
+DOWNLOAD_LOCATION = "./DOWNLOADS"
+MAX_FILE_SIZE = 4194304000
+TG_MAX_FILE_SIZE = 4194304000
+FREE_USER_MAX_FILE_SIZE = 4194304000
+CHUNK_SIZE = int(environ.get("CHUNK_SIZE", 128))
+HTTP_PROXY = environ.get("HTTP_PROXY", "")
+OUO_IO_API_KEY = ""
+MAX_MESSAGE_LENGTH = 4096
+PROCESS_MAX_TIMEOUT = 0
+DEF_WATER_MARK_FILE = ""
+LOGGER = logging
+maniadownloaders = [int(maniadownloaders) if id_pattern.search(maniadownloaders) else maniadownloaders for maniadownloaders in environ.get('PRIME_DOWNLOADERS', '').split()]
+PRIME_DOWNLOADERS = (maniadownloaders) if maniadownloaders else []
 
 # Auto Delete For Group Message (Self Delete) #
 SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 300))

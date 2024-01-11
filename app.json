@@ -1,23 +1,18 @@
 {
-    "name": "MoviezKattaBot",
-    "description": "MoviezKatta is a Super and Fully Advance Auto-filter-Bot - With Artificial Intelligence + File renaming + Url Shortning + Online FIle Streaming Feature. Thanks to Mania for making it so cool.",
+    "name": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
     "stack": "container",
     "keywords": [
-      "Mania",
-      "Moviez Mania Bot",
-      "auto-filter Bot",
-      "Auto-Filter with File Stream",
-      "Auto-filter with url-shortner",
-      "telegram-bot",
-      "best-telegram-bot",
-      "media-search bot",
-      "bots like moviez moviez",
-      "Auto Filter bot by Mania",
-      "Auto filter bot github",
-      "Auto filter bot for heroku",
-      "Why I don't know Mania",
-       "Moviez Mania Bot",
-       "MoviezManiaBot"
+      "telegram",
+      "auto-filter",
+      "filter",
+      "best",
+      "indian",
+      "pyrogram",
+      "media",
+      "search",
+      "channel",
+      "index",
+      "inline"
     ],
     "website": "https://github.com/Moviez-Bot-Dev/MoviezKattaBot",
     "repository": "https://github.com/Moviez-Bot-Dev/MoviezKattaBot",
@@ -52,11 +47,11 @@
         },
         "AUTH_USERS": {
             "description": "Username or ID of users to give access of inline search. Separate multiple users by space.\nLeave it empty if you don't want to restrict bot usage.",
-            "required": true
+            "required": false
         },
         "AUTH_CHANNEL": {
             "description": "ID of channel.Make sure bot is admin in this channel. Without subscribing this channel users cannot use bot.",
-            "required": true
+            "required": false
         },
         "DATABASE_URI": {
             "description": "mongoDB URI. Get this value from https://www.mongodb.com.",
@@ -64,7 +59,7 @@
         },
         "DATABASE_NAME": {
             "description": "mongoDB Database name.",
-            "required": true
+            "required": false
         },
         "COLLECTION_NAME": {
             "description": "Name of the collections. Defaults name is Telegram_files. If you are using the same database, then use different collection name for each bot",
@@ -100,61 +95,22 @@
         },
         "FQDN": {
             "description": "Read the readme for more info about this var  **Leave Empty for heroku**",
-            "required": true
+            "required": false
         },
         "name": {
             "description": "Session Name",
-            "value": "MoviezKattaBot",
+            "value": "File-To-Link",
             "required": false
-        },
-        "MANIA_MODE": {
-            "description": " True - to enable file renaming feature ",
-            "value": "True",
-            "required": true
-        },
-        "MANIA_RENAMERS": {
-            "description": "Users id, whom you want to allow file renaming ",
-            "value": "857270426",
-            "required": true
-        },
-        "REQ_CHANNEL": {
-            "description": "To send logs of unavailable contnts",
-            "value": "-100xxxxxxx",
-            "required": true
-        },
-        "URL_MODE": {
-            "description": "True - 'if you want to enable url shortner' else - false ",
-            "value": "False",
-            "required": true
-        },
-        "URL_SHORTENR_WEBSITE": {
-            "description": " Url shortner website link   ",
-            "value": "shareus.io",
-            "required": true
-        },
-        "URL_SHORTNER_WEBSITE_API": {
-            "description": " Url shortner website api  ",
-            "value": "xxxxxxxxxxxxx",
-            "required": true
-        },
-        "MANIA_GROUPS": {
-            "description": " Group id whom you want to bypass url ",
-            "value": "-1004002587417",
-            "required": true
-        },
-        "MY_USERS": {
-            "description": "Id of the users whom you want to allow to forward message in file protection mode ",
-            "value": "857270426",
-            "required": true
         }
     },
+    "addons": [],
     "buildpacks": [{
         "url": "heroku/python"
-      }],
+    }],
     "formation": {
-        "web": {
+        "worker": {
             "quantity": 1,
-            "size": "eco"
+            "size": "free"
         }
     }
 }

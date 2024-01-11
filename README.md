@@ -7,11 +7,13 @@
 
 ## ⚡️Features
 
+- 🔥 UPCOMING : `BOT CLONING[V-_._]` & `LANGUAGE and SEASON FILTER[V-_._]`
 - [x] 🔥 New feature :
-    - [+] ⚡️ Added `Artificial Inteligence` feature and many more feature ⚡️
+    - [+] ⚡️ Added `URL UPLOADING` feature and many more  ⚡️
     - [+] ⚡️ Added `file renaming` feature ⚡️
       - super premium repo...
     - [+] ⚡️ Support 2GB + Files ⚡️
+    - [+] ⚡️ [Watch Latest Tutorial](https://youtube.com/Moviez-Mania)  ⚡️
 - [x] Auto Filter
 - [x] Manual Filter
 - [x] IMDB
@@ -45,6 +47,15 @@ Read [this](https://telegram.dog/Updated_Mania/7) before you start messing up wi
 * `FILE_STORE_CHANNEL`: Channel from were file store links of posts should be made.Separate multiple IDs by space
 * `MANIA_MODE`: True or False . If true then bot will rename files else it will not rename.
 * `MANIA_RENAMERS`: ID of the users to which you want to give file renaming authentication. Separate multiple ids by space.
+* `REQ_CHANNEL`: ID of the channel where you want to send request logs.
+* `URL_MODE`: True or False. If true then bot will use url shortner.
+* `URL_SHORTENR_WEBSITE`: Name of the url shortner website.
+* `URL_SHORTNER_WEBSITE_API`: API ID of the url shortner website.
+* `MZURL_PRIME_USERS`: IDs of the users who you don't want to use url. Separate multiple ids by space
+* `MANIA_GROUPS`: IDs of the groups where you don't want bot to use url. Separate multiple ids by space
+* `MY_USERS`: ID of the users to which you want to give file sharing authentication for private files. Separate multiple ids by space.
+* `FQDN`: Domain name of your currently deployed bot.
+* `PRIME_DOWNLOADERS`: ID of the users to which you want to give file uploading using url. Separate multiple ids by space.
 
 
 * Check [info.py](https://github.com/Moviez-Bot-Dev/MoviezKattaBot/blob/stream-feature/info.py) for more
@@ -136,12 +147,17 @@ python3 bot.py
 • /unban - ᴛᴏ ᴜɴʙᴀɴ ᴀ ᴜsᴇʀ.
 • /channel - ᴛᴏ ɢᴇᴛ ʟɪsᴛ ᴏғ ᴛᴏᴛᴀʟ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴄʜᴀɴɴᴇʟs.
 • /broadcast - ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴀʟʟ ᴍᴏᴠɪᴇᴢᴍᴀᴛᴇ ᴜsᴇʀs.
-• /batch - ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ ғᴏʀ ᴍᴜʟᴛɪᴘʟᴇ ᴘᴏsᴛs
-• /link - ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ ғᴏʀ ᴏɴᴇ ᴘᴏsᴛ
-• /set_caption - ᴛᴏ sᴇᴛ ɴᴇᴡ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ
-• /del_caption - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ
-• /viewthumb - ᴛᴏ ᴠɪᴇᴡ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ
-• /delthumb - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ
+• /batch - ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ ғᴏʀ ᴍᴜʟᴛɪᴘʟᴇ ᴘᴏsᴛs.
+• /link - ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ ғᴏʀ ᴏɴᴇ ᴘᴏsᴛ.
+• /set_caption - ᴛᴏ sᴇᴛ ɴᴇᴡ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /del_caption - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /del_caption - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /set_thumb or /st - ᴛᴏ sᴇᴛ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /set_lazy_thumb or /slt - ᴛᴏ sᴇᴛ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /view_thumb or /vt - ᴛᴏ ᴠɪᴇᴡ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /view_lazy_thumb or /vlt - ᴛᴏ ᴠɪᴇᴡ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /del_thumb or /dt - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /del_lazy_thumb or /dlt - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 ```
 ## Support
 [![telegram badge](https://img.shields.io/badge/Telegram-Group-30302f?style=flat&logo=telegram)](https://telegram.dog/Moviez_Get_Mania)
@@ -153,6 +169,8 @@ python3 bot.py
 
 ## Thanks to 
  - Thank you [LazyDeveloper](https://github.com/LazyDeveloperr) for helping us in this journey ❤
+  - Thank you [LazyDeveloper](https://github.com/LazyDeveloperr) for adding amazing `url uploadig feature` 🎉
+ - Thank you [LazyDeveloper](https://github.com/LazyDeveloperr) for adding `online file streaming feature` 🎉
  - Thank you [LazyDeveloper](https://github.com/LazyDeveloperr) for adding `file renaming feature` 🎉
  - Thank you [LazyDeveloper](https://github.com/LazyDeveloperr) for keeping this `super premium repo` for `free` ❤
  - Thanks To Dan For His Awesome [Library](https://github.com/pyrogram/pyrogram)
@@ -164,7 +182,17 @@ python3 bot.py
 
 [Join Main Channel](https://telegram.dog/Updated_Mania): Moviez Mania Updates 🎁
 
+
+#### 🧡 Respecting... 🧡
+- [🔥 ᴍᴀɴɪᴀ](https://github.com/Moviez-Bot-Dev) 
+
+### 🤩 INSPIRATION
+<a href="https://telegram.dog/MoviezKattaBot">
+   <p>❣️ MoviezKatta 🔥</p>
+</a>
+
+
 ## Disclaimer
 [![GNU Affero General Public License 2.0](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.en.html#header)    
-Licensed under [GNU AGPL 2.0.](https://github.com/LazyDeveloperr/LazyPrincess/blob/master/LICENSE)
+Licensed under [GNU AGPL 2.0.](https://github.com/Moviez-Bot-Dev/MoviezKattaBot/blob/stream-feature/LICENSE)
 Selling The Codes To Other People For Money Is *Strictly Prohibited*.

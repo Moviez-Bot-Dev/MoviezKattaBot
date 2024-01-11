@@ -1,8 +1,6 @@
-
 import logging
 import logging.config
 
-# Get logging configurations
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
@@ -24,9 +22,6 @@ from info import *
 from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
-from Script import script 
-from datetime import date, datetime 
-import pytz
 from aiohttp import web
 from plugins import web_server
 
@@ -45,7 +40,7 @@ loop = asyncio.get_event_loop()
 
 async def Mania_start():
     print('\n')
-    print('Initalizing Telegram Bot ')
+    print(' Initalizing Telegram Bot ')
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     bot_info = await MoviezKattaBot.get_me()
@@ -64,20 +59,11 @@ async def Mania_start():
     MoviezKattaBot.username = '@' + me.username
     app = web.AppRunner(await web_server())
     await app.setup()
-    bind_address = "0.0.0.0"
+    bind_address = "0.0.0.0" if ON_HEROKU else BIND_ADRESS
+    await web.TCPSite(app, bind_address, PORT).start()
     logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
     logging.info(LOG_STR)
-    tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
-    now = datetime.now(tz)
-    time = now.strftime("%H:%M:%S %p")
-    await MoviezKattaBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(today, time))
-    app = web.AppRunner(await web_server())
-    await app.setup()
-    bind_address = "0.0.0.0"
-    await web.TCPSite(app, bind_address, PORT).start()
     await idle()
-
 
 if __name__ == '__main__':
     try:

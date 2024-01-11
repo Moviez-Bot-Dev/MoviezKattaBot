@@ -19,6 +19,7 @@ from database.mania_utils import progress_for_pyrogram, convert, humanbytes
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 import os 
+from Script import script
 import humanize
 from PIL import Image
 import time
@@ -29,11 +30,14 @@ from database.filters_mdb import (
     get_filters,
 )
 from util.human_readable import humanbytes
+from plugins.settings.settings import OpenSettings
+from plugins.dl_button import ddl_call_back
+from plugins.yt_mania_dl_btn import youtube_dl_call_back
 from urllib.parse import quote_plus
 from util.file_properties import get_name, get_hash, get_media_file_size
 import logging
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.ERROR)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 req_channel = REQ_CHANNEL
 BUTTONS = {}
@@ -447,6 +451,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     pass
             else:
                 await query.answer("That's not for you Dear!", show_alert=True)
+    elif "=" in query.data:
+        try:
+            await youtube_dl_call_back(client, query)
+        except Exception as e:
+            logger.error(f"An error occurred youtube_dl_call_back: {e}")
+    elif "|" in query.data:
+        try:
+            await ddl_call_back(client, query)
+        except Exception as e:
+            logger.error(f"AN error occurred for ddl_call_back: {e}")
     elif "groupcb" in query.data:
         await query.answer()
 
@@ -672,9 +686,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ], [
             InlineKeyboardButton('🙆🏻 Help 🦾', callback_data='help'),
             InlineKeyboardButton('♥️ About ♥️', callback_data='about')
-        ],[
-            InlineKeyboardButton('SUBSCRIBE ❣️', url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
-        ]]
+            ],[
+            InlineKeyboardButton('🔗 More Help', callback_data='leech_url_help'),
+            InlineKeyboardButton('⚙ Open Settings', callback_data='openSettings'),
+            ],[
+            InlineKeyboardButton('🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉', url=f"https://instagram.com/{MANIA_IG_HANDLE}")
+            ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -755,7 +772,71 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
 
+    elif query.data == "leech_url_help":
+        buttons = InlineKeyboardMarkup(
+            [[
+            InlineKeyboardButton('🏠 Home', callback_data='start'),
+            InlineKeyboardButton('♥️ About ♥️', callback_data='about')
+            ],[
+            InlineKeyboardButton('open settings ', callback_data='openSettings'),
+            InlineKeyboardButton('ABOUT DEV ', callback_data='about')
+            ],[
+            InlineKeyboardButton('🔐 Close', callback_data='close_data')
+            ]]
+            
+        )
+        await query.message.edit_text(
+            text=script.MANIA_URL_HELP_TXT,
+            reply_markup=buttons,
+            disable_web_page_preview=True
+        )
 
+    elif query.data == "openSettings":
+        await query.answer()
+        await OpenSettings(query.message)
+
+    elif query.data == "triggerUploadMode":
+        await query.answer("♥️Thank You Mania ")
+        upload_as_doc = await db.get_upload_as_doc(query.from_user.id)
+        if upload_as_doc:
+            await db.set_upload_as_doc(query.from_user.id, False)
+        else:
+            await db.set_upload_as_doc(query.from_user.id, True)
+        await OpenSettings(query.message)
+    
+    elif query.data == "showThumbnail":
+        thumbnail = await db.get_mania_thumbnail(query.from_user.id)
+        if not thumbnail:
+            await query.answer("Hey baby, You didn't set any custom thumbnail for url downloading 🥱!", show_alert=True)
+        else:
+            await query.answer()
+            await client.send_photo(query.message.chat.id, thumbnail, "Custom Thumbnail",
+                               reply_markup = InlineKeyboardMarkup([[
+                                                        InlineKeyboardButton("Delete Thumbnail",
+                                                        callback_data="deleteurlthumbnail")
+                               ]]))
+
+    elif query.data == "deleteurlthumbnail":
+        await db.set_mania_thumbnail(query.from_user.id, None)
+        await query.answer("**Okay baby, I deleted your custom thumbnail for url downloading. Now I will apply default thumbnail. ☑**", show_alert=True)
+        await query.message.delete(True)
+    elif query.data == "deleteThumbnail":
+        await db.set_thumbnail(query.from_user.id, None)
+        await query.answer("**Okay sweetie, I deleted your custom thumbnail for direct renaming. Now I will apply default thumbnail. ✅️**", show_alert=True)
+        await query.message.delete(True)
+
+    elif query.data == "setThumbnail":
+        button = InlineKeyboardMarkup(
+            [[
+                InlineKeyboardButton('Back', callback_data='openSettings'),
+                InlineKeyboardButton('Close', callback_data='close')
+            ]]
+        )
+        await query.message.edit_text(
+            text=script.TEXT,
+            reply_markup=button,
+            disable_web_page_preview=True
+        )
     elif data.startswith("generate_stream_link"):
         _, file_id = data.split(":")
         try:
@@ -793,7 +874,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(f"☣something went wrong sweetheart\n\n{e}", show_alert=True)
             return
 
-
     elif data.startswith("notify_user_not_avail"):
         _, user_id, movie = data.split(":")
         # Send message to user
@@ -803,7 +883,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -831,7 +911,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
             ]]
             btn_lzdv = [
                 [
@@ -858,7 +938,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -886,7 +966,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
             ]]
             btn_lzdv = [
                 [
@@ -913,7 +993,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -941,7 +1021,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
             ]]
             btn_lzdv = [
                 [
@@ -968,7 +1048,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
                 InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
             ],[
-                InlineKeyboardButton(text=f"⚡️ Subscribe 🦋", url=f"https://youtube.com/@{MANIA_YT_HANDLE}")
+                InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
             ]]
             btn_lzdv = [
@@ -1039,42 +1119,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-    # elif query.data == "getmaniathumbnail":
-    #     buttons = [
-    #         [
-    #         InlineKeyboardButton("D͢o͢n͢a͢t͢e͢ L͢a͢z͢y͢D͢e͢v͢", callback_data="thdonatemaniadev"),
-    #         ],
-    #         [ InlineKeyboardButton("<- G̳O̳ ̳B̳A̳C̳K̳  ⨳", callback_data="maniahome") ]
-    #         ]
-    #     reply_markup = InlineKeyboardMarkup(buttons)
-    #     await query.message.edit_text(
-    #         text=script.MZTHMB_TEXT.format(query.from_user.mention),
-    #         reply_markup=reply_markup,
-    #         parse_mode=enums.ParseMode.HTML
-    #     )
-    # elif query.data == "thdonatemaniadev":
-    #     buttons = [
-    #         [ InlineKeyboardButton("<- G̳O̳ ̳B̳A̳C̳K̳  ⨳", callback_data="getmaniathumbnail") ]
-    #         ]
-    #     reply_markup = InlineKeyboardMarkup(buttons)
-    #     await query.message.edit_text(
-    #         text=script.DNT_TEXT.format(query.from_user.mention),
-    #         reply_markup=reply_markup,
-    #         parse_mode=enums.ParseMode.HTML
-    #     )
-    # elif query.data == "getmanialink":
-    #     buttons = [
-    #         [
-    #         InlineKeyboardButton("D͢o͢n͢a͢t͢e͢ L͢a͢z͢y͢D͢e͢v͢", callback_data="linkdonatemaniadev"),
-    #         ],
-    #         [ InlineKeyboardButton("<- G̳O̳ ̳B̳A̳C̳K̳  ⨳", callback_data="maniahome") ]
-    #         ]
-    #     reply_markup = InlineKeyboardMarkup(buttons)
-    #     await query.message.edit_text(
-    #         text=script.MZLINK_TEXT.format(query.from_user.mention),
-    #         reply_markup=reply_markup,
-    #         parse_mode=enums.ParseMode.HTML
-    #     )
+
     elif query.data == "donatemaniadev":
         buttons = [
             [ InlineKeyboardButton("⨳   Close   ⨳", callback_data="close_data") ]
@@ -1104,63 +1149,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-    # elif query.data == "reqauthgetmaniathumbnail":
-    #     buttons = [
-    #         [
-    #         InlineKeyboardButton("D͢o͢n͢a͢t͢e͢ L͢a͢z͢y͢D͢e͢v͢", callback_data="thdonatemaniadev"),
-    #         ],
-    #         [ InlineKeyboardButton("<- G̳O̳ ̳B̳A̳C̳K̳  ⨳", callback_data="reqauthmaniahome") ]
-    #         ]
-    #     reply_markup = InlineKeyboardMarkup(buttons)
-    #     await query.message.edit_text(
-    #         text=script.MZTHMB_TEXT.format(query.from_user.mention),
-    #         reply_markup=reply_markup,
-    #         parse_mode=enums.ParseMode.HTML
-    #     )
-    # elif query.data == "reqauthmaniahome":
-    #     text = f"""\n⨳ *•.¸♡ ᴍᴀɴɪᴀ ᴍᴏᴅᴇ ♡¸.•* ⨳\n\n**Please tell, what should i do with this file.?**\n"""
-    #     buttons = [[ InlineKeyboardButton("📝✧ sᴛᴀʀᴛ ʀᴇɴᴀᴍɪɴɢ ✧📝", callback_data="requireauth") ],
-    #                        [ InlineKeyboardButton("⨳  Ꮯ Ꮮ ϴ Տ Ꭼ  ⨳", callback_data="cancel") ]]
-    #     reply_markup = InlineKeyboardMarkup(buttons)
-    #     await query.message.edit_text(
-    #                 text=text,
-    #                 reply_markup=reply_markup,
-    #                 parse_mode=enums.ParseMode.HTML
-    #             )
-    # elif query.data == "reqauthgetmanialink":
-    #     buttons = [
-    #         [
-    #         InlineKeyboardButton("D͢o͢n͢a͢t͢e͢ L͢a͢z͢y͢D͢e͢v͢", callback_data="linkdonatemaniadev"),
-    #         ],
-    #         [ InlineKeyboardButton("<- G̳O̳ ̳B̳A̳C̳K̳  ⨳", callback_data="reqauthmaniahome") ]
-    #         ]
-    #     reply_markup = InlineKeyboardMarkup(buttons)
-    #     await query.message.edit_text(
-    #         text=script.MZLINK_TEXT.format(query.from_user.mention),
-    #         reply_markup=reply_markup,
-    #         parse_mode=enums.ParseMode.HTML
-    #     )
     elif query.data == "exit":
         await query.answer("Sorry Darling! You can't make any changes...\n\nOnly my Admin can change this setting...", show_alert = True)
         return
     elif query.data == "invalid_index_process":
         await query.answer("Hey sweetie, please send me the last media with quote from your group.\nAnd also make sure that i am admin in your beloved group...")
         return
-    # elif query.data == "already_uploaded":
-    #     if query.from_user.id not in ADMINS:
-    #         await query.answer("Sorry Darling! You can't make any changes...\n\nOnly my Admin can change this setting...", show_alert = True)
-    #         return
-    #     else:
-    #         message = message.text
-    #         chat_id = message.chat_id
-    #         extracted_line = re.search(pattern, message, re.MULTILINE)
-    #         if extracted_line:
-    #           # Send the extracted line to the other group chat
-    #             buttons = [
-    #             [ InlineKeyboardButton("⨳ ok ⨳", callback_data="cancel") ]
-    #             ]
-    #             reply_markup = InlineKeyboardMarkup(buttons)
-    #             await client.send_message(MOVIE_GROUP_ID, text=extracted_line.group(1))
+
     elif query.data == "cancel":
         try:
             await query.message.delete()
@@ -1277,6 +1272,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     await query.answer('♥️ Thank You Mania ♥️')
 
+
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
@@ -1300,7 +1296,7 @@ async def auto_filter(client, msg, spoll=False):
                                                                                                                                         ]))
                 
                 l = await message.reply_text(text=f"△ 𝙷𝚎𝚢 𝚜𝚘𝚗𝚊 `{message.from_user.first_name}` 😎,\n\nʏᴏᴜʀ ʀᴇQᴜᴇꜱᴛ ʜᴀꜱ ʙᴇᴇɴ ꜱᴇɴᴛ ᴛᴏ ᴏᴜʀ **ᴀᴅᴍɪɴ'ꜱ ᴅᴀꜱʜʙᴏᴀʀᴅ** !\nᴘʟᴇᴀꜱᴇ ᴋᴇᴇᴘ ꜱᴏᴍᴇ ᴘᴀᴛɪᴇɴᴄᴇ !\nᴛʜᴇʏ ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴀꜱ ꜱᴏᴏɴ ᴀꜱ ᴘᴏꜱꜱɪʙʟᴇ.\n\n➟ 📝𝘾𝙤𝙣𝙩𝙚𝙣𝙩 𝙣𝙖𝙢𝙚 : `{search}`\n➟ 👮𝙍𝙚𝙦𝙪𝙚𝙨𝙩𝙚𝙙 𝘽𝙮 : `{message.from_user.first_name}`\n\n༺ @{MAIN_CHANNEL_USRNM} ༻\n\n🦋・‥☆ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ☆‥・🦋\n╰┈➤・☆ @{ADMIN_USRNM}\n╰┈➤・☆ @{ADMIN_USRNM}",
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  ᗩᗪᗪ ʍɛ 2 ᑌᖇ Ǥᖇᗝᑌᑭ  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪ Dev Ch- ✪", url=f"https://t.me/{DEV_CHANNEL_USRNM}"), InlineKeyboardButton("✪ ＹＴ ✪", url=f"https://youtube.com/@{MANIA_YT_HANDLE}"), InlineKeyboardButton("✪ Main Ch- ✪", url=f"https://t.me/{MAIN_CHANNEL_USRNM}")],[InlineKeyboardButton("╚»♥️ Thank You ♥️«╝", callback_data="close_data")]]))
+                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  ᗩᗪᗪ ʍɛ 2 ᑌᖇ Ǥᖇᗝᑌᑭ  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪ Dev Ch- ✪", url=f"https://t.me/{DEV_CHANNEL_USRNM}"), InlineKeyboardButton("✪ 🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉 ✪", url=f"https://instagram.com/{MANIA_IG_HANDLE}"), InlineKeyboardButton("✪ Main Ch- ✪", url=f"https://t.me/{MAIN_CHANNEL_USRNM}")],[InlineKeyboardButton("╚»♥️ Thank You ♥️«╝", callback_data="close_data")]]))
                 await asyncio.sleep(12)
                 await l.delete()    
                 if settings["spell_check"]:

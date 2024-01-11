@@ -11,10 +11,9 @@ logging.basicConfig(
 )
 logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
-
+logger = logging.getLogger(__name__)
 from pyrogram import Client
 from database.ia_filterdb import Media
-from info import *
 from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types

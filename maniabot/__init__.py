@@ -1,4 +1,5 @@
     # Credit @Mania24SupportBot.
+
 import logging
 import logging.config
 logging.config.fileConfig('logging.conf')
@@ -12,13 +13,17 @@ logging.basicConfig(
 logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
+
 from pyrogram import Client
 from database.ia_filterdb import Media
+from info import *
 from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
 from aiohttp import web
+
 from pyrogram import Client
+from info import *
 
 class MoviezKattaBot(Client):
     def __init__(self):
@@ -69,7 +74,7 @@ class MoviezKattaBot(Client):
             for message in messages:
                 yield message
                 current += 1
-                
+
 multi_clients = {}
 work_loads = {}
 

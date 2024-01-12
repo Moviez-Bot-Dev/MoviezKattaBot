@@ -18,9 +18,7 @@ from utils import temp
 from typing import Union, Optional, AsyncGenerator
 from pyrogram import types
 from aiohttp import web
-
 from pyrogram import Client
-from info import *
 
 class MoviezKattaBot(Client):
     def __init__(self):

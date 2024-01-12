@@ -98,8 +98,8 @@
             "required": false
         },
         "name": {
-            "description": "Session Name",
-            "value": "File-To-Link",
+            "description": " Session Name ",
+            "value": "MoviezKattaBot",
             "required": false
         }
     },

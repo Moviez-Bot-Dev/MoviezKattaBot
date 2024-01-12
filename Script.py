@@ -162,7 +162,7 @@ This module only works for my admins
 ★ Tᴏᴛᴀʟ Cʜᴀᴛs: <code>{}</code>
 ★ Usᴇᴅ Sᴛᴏʀᴀɢᴇ: <code>{}</code>
 ★ Fʀᴇᴇ Sᴛᴏʀᴀɢᴇ: <code>{}</code></b>"""
-    LOG_TEXT_G = """#NewGroup
+    LOG_TEXT_G = """#NewGroup #MoviezKattaBot
 Group = {}(<code>{}</code>)
 Total Members = <code>{}</code>
 Added By - {}

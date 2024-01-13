@@ -46,19 +46,19 @@ Here is the help for my COMMANDS."""
 ➪ Send me a photo and reply that photo with cmd /st or /set_thumb or /set_thumbnail
 
 🧬 How to set thumbnail for URL Downloading
-➪ Send me a photo and reply that photo with cmd /slt or /set_mania_thumb or /set_mania_thumbnail
+➪ Send me a photo and reply that photo with cmd /smt or /set_mania_thumb or /set_mania_thumbnail
 
 🧬 How to show normal thumbnail
 ➪ Send /vt or /veiw_thumb or /view_thumbnail
 
 🧬 How to show url thumbnail
-➪ Send /vlt or /veiw_mania_thumb or /view_mania_thumbnail
+➪ Send /vmt or /veiw_mania_thumb or /view_mania_thumbnail
 
 🧬 How To Delete normal Thumbnail
 ➪ Send /dt or /del_thumb or /delete_thumb
 
 🧬 How To Delete URL Thumbnail
-➪ Send /dlt or /del_mania_thumb or /delete_mania_thumb
+➪ Send /dmt or /del_mania_thumb or /delete_mania_thumb
 
 🧬 How to Rename any Media
 ➪ Send me a video or document i will provide you renaming function

@@ -121,11 +121,11 @@ python3 bot.py
 
 ## Commands
 ```
-• /start - To check alive.
-• /logs - ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʀᴇᴄᴇɴᴛ ᴇʀʀᴏʀs
+• /start - ᴛᴏ ᴄʜᴇᴄᴋ ᴀʟɪᴠᴇ.
+• /logs - ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʀᴇᴄᴇɴᴛ ᴇʀʀᴏʀs.
 • /stats - ᴛᴏ ɢᴇᴛ sᴛᴀᴛᴜs ᴏғ ғɪʟᴇs ɪɴ ᴅʙ.
 • /settings - ᴛᴏ ᴏᴘᴇɴ sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ.
-• /filter - ᴀᴅᴅ ᴍᴀɴᴜᴀʟ ғɪʟᴛᴇʀs
+• /filter - ᴀᴅᴅ ᴍᴀɴᴜᴀʟ ғɪʟᴛᴇʀs.
 • /filters - ᴠɪᴇᴡ ғɪʟᴛᴇʀs.
 • /connect - ᴄᴏɴɴᴇᴄᴛ ᴛᴏ ᴘᴍ.
 • /disconnect - ᴅɪsᴄᴏɴɴᴇᴄᴛ ғʀᴏᴍ ᴘᴍ.
@@ -146,18 +146,18 @@ python3 bot.py
 • /ban - ᴛᴏ ʙᴀɴ ᴀ ᴜsᴇʀ.
 • /unban - ᴛᴏ ᴜɴʙᴀɴ ᴀ ᴜsᴇʀ.
 • /channel - ᴛᴏ ɢᴇᴛ ʟɪsᴛ ᴏғ ᴛᴏᴛᴀʟ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴄʜᴀɴɴᴇʟs.
-• /broadcast - ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴀʟʟ ᴍᴏᴠɪᴇᴢᴍᴀᴛᴇ ᴜsᴇʀs.
+• /broadcast - ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴀʟʟ ᴍᴏᴠɪᴇᴢᴍᴀɴɪᴀ ᴜsᴇʀs.
 • /batch - ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ ғᴏʀ ᴍᴜʟᴛɪᴘʟᴇ ᴘᴏsᴛs.
 • /link - ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ ғᴏʀ ᴏɴᴇ ᴘᴏsᴛ.
 • /set_caption - ᴛᴏ sᴇᴛ ɴᴇᴡ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 • /del_caption - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 • /del_caption - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 • /set_thumb or /st - ᴛᴏ sᴇᴛ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
-• /set_lazy_thumb or /slt - ᴛᴏ sᴇᴛ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /set_mania_thumb or /smt - ᴛᴏ sᴇᴛ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 • /view_thumb or /vt - ᴛᴏ ᴠɪᴇᴡ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
-• /view_lazy_thumb or /vlt - ᴛᴏ ᴠɪᴇᴡ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /view_mania_thumb or /vmt - ᴛᴏ ᴠɪᴇᴡ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 • /del_thumb or /dt - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ʀᴇɴᴀᴍɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
-• /del_lazy_thumb or /dlt - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
+• /del_mania_thumb or /dmt - ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ #ᴜʀʟ_ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ_ғᴇᴀᴛᴜʀᴇ.
 ```
 ## Support
 [![telegram badge](https://img.shields.io/badge/Telegram-Group-30302f?style=flat&logo=telegram)](https://telegram.dog/Moviez_Get_Mania)

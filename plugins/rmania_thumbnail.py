@@ -79,7 +79,7 @@ async def addthumbs(client, message):
     else:
         await ManiaDev.edit("**❌ Please reply to a photo to set it as a custom thumbnail.**")
 
-@Client.on_message(filters.private & filters.command(['view_mania_thumb','vlt']))
+@Client.on_message(filters.private & filters.command(['view_mania_thumb','vmt']))
 async def viewthumbnail(client, message):    
     if not message.from_user:
         return await message.reply_text("What the hell is this...")
@@ -101,7 +101,7 @@ async def viewthumbnail(client, message):
     else:
         await message.reply_text(text=f"ɴᴏ ᴛʜᴜᴍʙɴᴀɪʟ ғᴏᴜɴᴅ 🤒")
 
-@Client.on_message(filters.private & filters.command(['del_mania_thumb','delete_mania_thumb','dlt']))
+@Client.on_message(filters.private & filters.command(['del_mania_thumb','delete_mania_thumb','dmt']))
 async def removethumbnail(client, message):
     if not message.from_user:
         return await message.reply_text("What the hell is this...")

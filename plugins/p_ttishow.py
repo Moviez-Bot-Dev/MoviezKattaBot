@@ -44,22 +44,6 @@ async def save_group(bot, message):
         await message.reply_text(
             text=f"<b>Thank you For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
-
-        # Request Verification => S - 4
-        chatID = message.chat.id
-        chatTitle = message.chat.title
-        mz_buttons = [
-            [
-                InlineKeyboardButton('🎉 Mark Verified 💞', callback_data=f"verify_mania_group:{chatTitle}:{chatID}")
-            ],[
-                InlineKeyboardButton('⚙ Ban Chat', callback_data=f"bangrpchat:{chatTitle}:{chatID}")
-            ],[
-                InlineKeyboardButton('🚮 Close', callback_data="close_data")
-            ]]
-        mania_markup=InlineKeyboardMarkup(mz_buttons)
-        await bot.send_message(GROUP_LOGS,
-                            text=f"Hey babe.\n I am added forcefully to this group named **{chatTitle}** Please tell me if you like to restrict this group...",
-                            reply_markup=mania_markup)
     else:
         settings = await get_settings(message.chat.id)
         if settings["welcome"]:

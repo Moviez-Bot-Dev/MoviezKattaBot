@@ -47,9 +47,6 @@ async def refunc(client, message):
                     await message.reply_text("**Error** :  No  Extension in File, Not Supporting", reply_to_message_id=mg_id)
                     return
                 await message.reply_to_message.delete()
-                    await message.reply_text("**Error** :  No  Extension in File, Not Supporting", reply_to_message_id=mg_id)
-                    return
-                await message.reply_to_message.delete()
                 if mime == "video":
                     markup = InlineKeyboardMarkup([[InlineKeyboardButton(
                         "📁 Document", callback_data="upload_document"), InlineKeyboardButton("🎥 Video", callback_data="upload_video")]])

@@ -673,11 +673,11 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
 
         btn.insert(0, 
             [
-                InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ"", callback_data=f"languages#{key}"),
+                InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
             ]
         )
         btn.insert(0, [
-	            InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://telegram.me/real_MoviesAdda3/18'),
+	            InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME,url=DOWNLOAD_TEXT_URL),
         ])
 
         if offset != "":

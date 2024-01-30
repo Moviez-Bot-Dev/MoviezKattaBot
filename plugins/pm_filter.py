@@ -369,7 +369,7 @@ async def next_page(bot, query):
 
     btn.insert(0,
         [ 
-	    InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
+        InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
         ] 
     )
     btn.insert(0,
@@ -1831,7 +1831,7 @@ async def auto_filter(client, msg, spoll=False):
     
     btn.insert(0,
         [ 
-        InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
+        InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
         ] 
     )
     btn.insert(0,

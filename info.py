@@ -153,8 +153,8 @@ DOWNLOAD_TEXT_NAME = "⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ 📥"
 DOWNLOAD_TEXT_URL = "https://t.me/Updated_Mania/39?single"
 
 # Custom Caption Under Button #
-CAPTION_BUTTON = "Get Updates"
-CAPTION_BUTTON_URL = "https://t.me/Updated_Mania"
+CAPTION_BUTTON = "Ⓑⓤⓨ Ⓟⓡⓔⓜⓘⓤⓜ"
+CAPTION_BUTTON_URL = "https://t.me/Updated_Mania/41?single"
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")

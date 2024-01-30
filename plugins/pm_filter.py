@@ -376,8 +376,6 @@ async def next_page(bot, query):
         [ 
 	    InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME,url=DOWNLOAD_TEXT_URL),
         ] 
-    ))
-        ] 
     )
 
     if 0 < offset <= 10:

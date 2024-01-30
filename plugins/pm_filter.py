@@ -4,6 +4,9 @@ import asyncio
 import re
 import ast
 import math
+import pytz
+from datetime import datetime, timedelta, date, time
+lock = asyncio.Lock()
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
@@ -14,7 +17,7 @@ from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
 from database.users_chats_db import db
-from database.ia_filterdb import Media, get_file_details, get_search_results
+from database.ia_filterdb import Media, get_file_details, get_search_results,get_search_results_badAss_Mania
 from database.mania_utils import progress_for_pyrogram, convert, humanbytes
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
@@ -42,7 +45,31 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 req_channel = REQ_CHANNEL
 BUTTONS = {}
 SPELL_CHECK = {}
+# 
+BUTTON = {}
+FRESH = {}
+BUTTONS0 = {}
+BUTTONS1 = {}
+BUTTONS2 = {}
 
+# @Client.on_message(filters.group & filters.text & filters.incoming)
+# async def give_filter(client, message):
+#     try:
+#         chatIDx = message.chat.id
+#         mania_chatIDx = await db.get_chat(int(chatIDx))
+#         if mania_chatIDx['is_mania_verified']:
+#             k = await manual_filters(client, message)
+#     except Exception as e:
+#         logger.error(f"Chat not verifeid : {e}") 
+
+#     if k == False:
+#         try:
+#             chatID = message.chat.id
+#             mania_chatID = await db.get_chat(int(chatID))
+#             if mania_chatID['is_mania_verified']:
+#                 await auto_filter(client, message)
+#         except Exception as e:
+#             logger.error(f"Chat Not verified : {e}") 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -58,116 +85,123 @@ async def rename(bot,update):
 	await update.message.reply_text("»»——— ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ɴᴇᴡ ғɪʟᴇ ɴᴀᴍᴇ...",	
 	reply_to_message_id=update.message.reply_to_message.id,  
 	reply_markup=ForceReply(True))  
+	
 # Born to make history @Mania24SupportBot !
 @Client.on_callback_query(filters.regex("upload"))
 async def doc(bot, update):
-    type = update.data.split("_")[1]
-    new_name = update.message.text
-    new_filename = new_name.split(":-")[1]
-    file = update.message.reply_to_message
-    file_path = f"downloads/{new_filename}"
-    ms = await update.message.edit("\n༻ ʙᴜɪʟᴅɪɴɢ ᴍᴀɴɪᴀ ᴍᴇᴛᴀᴅᴀᴛᴀ...")
-    c_time = time.time()
     try:
-        path = await bot.download_media(
-                message=file,
-                progress=progress_for_pyrogram,
-                progress_args=("**\n  ღ♡ ꜰɪʟᴇ ᴜɴᴅᴇʀ ᴄᴏɴꜱᴛʀᴜᴄᴛɪᴏɴ... ♡♪**", ms, c_time))
-    except Exception as e:
-        await ms.edit(e)
-        return 
-    splitpath = path.split("/downloads/")
-    dow_file_name = splitpath[1]
-    old_file_name =f"downloads/{dow_file_name}"
-    os.rename(old_file_name, file_path)
-    duration = 0
-    try:
-        metadata = extractMetadata(createParser(file_path))
-        if metadata.has("duration"):
-           duration = metadata.get('duration').seconds
-    except:
-        pass
-    user_id = int(update.message.chat.id) 
-    ph_path = None 
-    media = getattr(file, file.media.value)
-    filesize = humanize.naturalsize(media.file_size) 
-    c_caption = await db.get_caption(update.message.chat.id)
-    c_thumb = await db.get_thumbnail(update.message.chat.id)
-    if c_caption:
-         try:
-             caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
-         except Exception as e:
-             await ms.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
-             return 
-    else:
-        caption = f"**{new_filename}** \n\n⚡️Data costs: `{filesize}`"
-    if (media.thumbs or c_thumb):
-        if c_thumb:
-           ph_path = await bot.download_media(c_thumb) 
+        type = update.data.split("_")[1]
+        new_name = update.message.text
+        new_filename = new_name.split(":-")[1]
+        file = update.message.reply_to_message
+        file_path = f"downloads/{new_filename}"
+        ms = await update.message.edit("\n༻☬ད 𝘽𝙪𝙞𝙡𝙙𝙞𝙣𝙜 𝙇𝙖𝙯𝙮 𝙈𝙚𝙩𝙖𝘿𝙖𝙩𝙖...")
+        c_time = time.time()
+        try:
+            path = await bot.download_media(
+                    message=file,
+                    progress=progress_for_pyrogram,
+                    progress_args=("**\n  ღ♡ ꜰɪʟᴇ ᴜɴᴅᴇʀ ᴄᴏɴꜱᴛʀᴜᴄᴛɪᴏɴ... ♡♪**", ms, c_time))
+        except Exception as e:
+            await ms.edit(e)
+            return 
+        splitpath = path.split("/downloads/")
+        dow_file_name = splitpath[1]
+        old_file_name =f"downloads/{dow_file_name}"
+        os.rename(old_file_name, file_path)
+        duration = 0
+        try:
+            metadata = extractMetadata(createParser(file_path))
+            if metadata.has("duration"):
+               duration = metadata.get('duration').seconds
+        except:
+            pass
+        user_id = int(update.message.chat.id) 
+        ph_path = None 
+        media = getattr(file, file.media.value)
+        filesize = humanize.naturalsize(media.file_size) 
+        c_caption = await db.get_caption(update.message.chat.id)
+        c_thumb = await db.get_thumbnail(update.message.chat.id)
+        if c_caption:
+             try:
+                 caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+             except Exception as e:
+                 await ms.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
+                 return 
         else:
-           ph_path = await bot.download_media(media.thumbs[0].file_id)
-        Image.open(ph_path).convert("RGB").save(ph_path)
-        img = Image.open(ph_path)
-        img.resize((320, 320))
-        img.save(ph_path, "JPEG")
-    await ms.edit("三 𝘗𝘳𝘦𝘱𝘢𝘳𝘪𝘯𝘨 𝘵𝘰 𝘳𝘦𝘤𝘦𝘪𝘷𝘦 𝘓𝘢𝘻𝘺 𝘧𝘪𝘭𝘦...︻デ═一")
-    c_time = time.time() 
-    try:
-       if type == "document":
-          await bot.send_document(
-	        update.message.chat.id,
-                   document=file_path,
-                   thumb=ph_path, 
-                   caption=caption, 
-                   progress=progress_for_pyrogram,
-                   progress_args=( "**⎝⎝✧ ʀᴇᴄɪᴇᴠɪɴɢ ꜰɪʟᴇ ꜰʀᴏᴍ ᴍᴀɴɪᴀ ꜱᴇʀᴠᴇʀ ✧⎠⎠**",  ms, c_time))
-       elif type == "video": 
-           await bot.send_video(
-	        update.message.chat.id,
-	        video=file_path,
-	        caption=caption,
-	        thumb=ph_path,
-	        duration=duration,
-	        progress=progress_for_pyrogram,
-	        progress_args=( "**⎝⎝✧ ʀᴇᴄɪᴇᴠɪɴɢ ꜰɪʟᴇ ꜰʀᴏᴍ ᴍᴀɴɪᴀ ꜱᴇʀᴠᴇʀ ✧⎠⎠**",  ms, c_time))
-       elif type == "audio": 
-           await bot.send_audio(
-	        update.message.chat.id,
-	        audio=file_path,
-	        caption=caption,
-	        thumb=ph_path,
-	        duration=duration,
-	        progress=progress_for_pyrogram,
-	        progress_args=( "**⎝⎝✧ ʀᴇᴄɪᴇᴠɪɴɢ ꜰɪʟᴇ ꜰʀᴏᴍ ᴍᴀɴɪᴀ ꜱᴇʀᴠᴇʀ ✧⎠⎠**",  ms, c_time   )) 
-    except Exception as e: 
-        await ms.edit(f" Erro {e}") 
-        os.remove(file_path)
+            caption = f"**{new_filename}** \n\n⚡️Data costs: `{filesize}`"
+        if (media.thumbs or c_thumb):
+            if c_thumb:
+               ph_path = await bot.download_media(c_thumb) 
+            else:
+               ph_path = await bot.download_media(media.thumbs[0].file_id)
+            Image.open(ph_path).convert("RGB").save(ph_path)
+            img = Image.open(ph_path)
+            img.resize((320, 320))
+            img.save(ph_path, "JPEG")
+        await ms.edit("三 𝘗𝘳𝘦𝘱𝘢𝘳𝘪𝘯𝘨 𝘵𝘰 𝘳𝘦𝘤𝘦𝘪𝘷𝘦 𝘓𝘢𝘻𝘺 𝘧𝘪𝘭𝘦...︻デ═一")
+        c_time = time.time() 
+        try:
+           if type == "document":
+              await bot.send_document(
+	            update.message.chat.id,
+                       document=file_path,
+                       thumb=ph_path, 
+                       caption=caption, 
+                       progress=progress_for_pyrogram,
+                       progress_args=( "**⎝⎝✧ ʀᴇᴄɪᴇᴠɪɴɢ ꜰɪʟᴇ ꜰʀᴏᴍ ᴍᴀɴɪᴀ ꜱᴇʀᴠᴇʀ ✧⎠⎠**",  ms, c_time))
+           elif type == "video": 
+               await bot.send_video(
+	            update.message.chat.id,
+	            video=file_path,
+	            caption=caption,
+	            thumb=ph_path,
+	            duration=duration,
+	            progress=progress_for_pyrogram,
+	            progress_args=( "**⎝⎝✧ ʀᴇᴄɪᴇᴠɪɴɢ ꜰɪʟᴇ ꜰʀᴏᴍ ᴍᴀɴɪᴀ ꜱᴇʀᴠᴇʀ ✧⎠⎠**",  ms, c_time))
+           elif type == "audio": 
+               await bot.send_audio(
+	            update.message.chat.id,
+	            audio=file_path,
+	            caption=caption,
+	            thumb=ph_path,
+	            duration=duration,
+	            progress=progress_for_pyrogram,
+	            progress_args=( "**⎝⎝✧ ʀᴇᴄɪᴇᴠɪɴɢ ꜰɪʟᴇ ꜰʀᴏᴍ ᴍᴀɴɪᴀ ꜱᴇʀᴠᴇʀ ✧⎠⎠**",  ms, c_time   )) 
+        except Exception as e: 
+            await ms.edit(f" Erro {e}") 
+            os.remove(file_path)
+            if ph_path:
+              os.remove(ph_path)
+            return 
+        await ms.delete() 
+        os.remove(file_path) 
         if ph_path:
-          os.remove(ph_path)
-        return 
-    await ms.delete() 
-    os.remove(file_path) 
-    if ph_path:
-       os.remove(ph_path) 
-
+           os.remove(ph_path) 
+    except Exception as e:
+        logger.error(f"error 2 : {e}")
 
 # Born to make history @Mania24SupportBot !
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
-
     ident, req, key, offset = query.data.split("_")
+    print(f"REQ => {req}")
     if int(req) not in [query.from_user.id, 0]:
-        return await query.answer("This Message is not for you dear. Don't worry you can send new one !", show_alert=True)
+        return await query.answer(
+                        f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
+                        show_alert=True,
+                    )
     try:
         offset = int(offset)
     except:
         offset = 0
     search = BUTTONS.get(key)
+    chat_id = query.message.chat.id
     if not search:
         await query.answer("You are using one of my old messages, please send the request again.", show_alert=True)
         return
 
-    files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
+    files, n_offset, total = await get_search_results_badAss_Mania(chat_id, search, offset=offset, filter=True)
     try:
         n_offset = int(n_offset)
     except:
@@ -175,6 +209,8 @@ async def next_page(bot, query):
 
     if not files:
         return
+    temp.GETALL[key] = files
+    temp.SHORT[query.from_user.id] = query.message.chat.id
     settings = await get_settings(query.message.chat.id)
         # if query.from_user.id in download_counts and download_counts[query.from_user.id]['date'] == current_date:
         #     if download_counts[query.from_user.id]['count'] >= DOWNLOAD_LIMIT:
@@ -333,7 +369,14 @@ async def next_page(bot, query):
 
     btn.insert(0,
         [ 
-	    InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://telegram.me/Updated_Mania/7')
+	    InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
+        ] 
+    )
+    btn.insert(0,
+        [ 
+	    InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME,url=DOWNLOAD_TEXT_URL),
+        ] 
+    ))
         ] 
     )
 
@@ -381,6 +424,8 @@ async def advantage_spoll_choker(bot, query):
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
+    chat_id = query.message.chat.id
+
     await query.answer('Checking for Movie in database...')
     k = await manual_filters(bot, query.message, text=movie)
     if k == False:
@@ -392,6 +437,271 @@ async def advantage_spoll_choker(bot, query):
             k = await query.message.edit('😒 currently unavailable ! we are really sorry for inconvenience !\n Have patience ! our great admins will upload it as soon as possible !')
             await asyncio.sleep(10)
             await k.delete()
+
+
+# Born to make history @Mania24SupportBot 🍁
+@Client.on_callback_query(filters.regex(r"^languages#"))
+async def languages_cb_handler(client: Client, query: CallbackQuery):
+    try:
+        if int(query.from_user.id) not in [query.message.reply_to_message.from_user.id, 0]:
+            return await query.answer(
+                f"⚠️ ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
+                show_alert=True,
+            )
+    except:
+        pass
+    _, key = query.data.split("#")
+    # if BUTTONS.get(key+"1")!=None:
+    #     search = BUTTONS.get(key+"1")
+    # else:
+    #     search = BUTTONS.get(key)
+    #     BUTTONS[key+"1"] = search
+    search = FRESH.get(key)
+    search = search.replace(' ', '_')
+    btn = []
+    for i in range(0, len(LANGUAGES)-1, 2):
+        btn.append([
+            InlineKeyboardButton(
+                text=LANGUAGES[i].title(),
+                callback_data=f"fl#{LANGUAGES[i].lower()}#{key}"
+            ),
+            InlineKeyboardButton(
+                text=LANGUAGES[i+1].title(),
+                callback_data=f"fl#{LANGUAGES[i+1].lower()}#{key}"
+            ),
+        ])
+    btn.insert(
+        0,
+        [
+            InlineKeyboardButton(
+                text="👇🏻 sᴇʟᴇᴄᴛ ʏᴏᴜʀ ʟᴀɴɢᴜᴀɢᴇ 👇🏻", callback_data="ident"
+            )
+        ],
+    )
+    req = query.from_user.id
+    offset = 0
+    btn.append([InlineKeyboardButton(text="↭ ʙᴀᴄᴋ ᴛᴏ ꜰɪʟᴇs ​↭", callback_data=f"fl#homepage#{key}")])
+
+    await query.edit_message_reply_markup(InlineKeyboardMarkup(btn))
+    
+
+@Client.on_callback_query(filters.regex(r"^fl#"))
+async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
+    try:
+        _, lang, key = query.data.split("#")
+        curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
+        search = FRESH.get(key)
+        search = search.replace("_", " ")
+        baal = lang in search
+        if baal:
+            search = search.replace(lang, "")
+        else:
+            search = search
+        req = query.from_user.id
+        chat_id = query.message.chat.id
+        message = query.message
+        try:
+            if int(req) not in [query.message.reply_to_message.from_user.id, 0]:
+                return await query.answer(
+                    f"👊 ʜᴇʟʟᴏ{query.from_user.first_name},\nᴛʜɪꜱ ɪꜱ ɴᴏᴛ ʏᴏᴜʀ ᴍᴏᴠɪᴇ ʀᴇQᴜᴇꜱᴛ,\nʀᴇQᴜᴇꜱᴛ ʏᴏᴜʀ'ꜱ...",
+                    show_alert=True,
+                )
+        except:
+            pass
+        if lang != "homepage":
+            search = f"{search} {lang}"
+        BUTTONS[key] = search
+    
+        files, offset, total_results = await get_search_results_badAss_Mania(chat_id, search, offset=0, filter=True)
+
+        if not files:
+            await query.answer("🚫 ɴᴏ ғɪʟᴇ ᴡᴇʀᴇ ғᴏᴜɴᴅ 🚫", show_alert=1)
+            return
+        temp.GETALL[key] = files 
+        settings = await get_settings(message.chat.id)
+        pre = 'filep' if settings['file_secure'] else 'file'
+        if settings["button"]:
+            # btn = [
+            #     [
+            #         InlineKeyboardButton(
+            #             text=f"[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f'{pre}#{file.file_id}'
+            #         ),
+            #     ]
+            #     for file in files
+            # ]
+            if URL_MODE is True:
+                if message.from_user.id in ADMINS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
+                    ]
+                elif message.from_user.id in MY_USERS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
+                    ]
+                elif message.from_user.id in MZURL_PRIME_USERS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
+                        ]
+                elif message.chat.id is not None and message.chat.id in MANIA_GROUPS:
+                    btn = [
+                    [
+                        InlineKeyboardButton(
+                            text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                        ),
+                    ]
+                    for file in files
+                    ]
+                else:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", 
+                                url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                            ),
+                        ]
+                        for file in files
+                    ]
+            else:
+                if message.from_user.id in ADMINS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
+                    ]
+                elif message.from_user.id in MY_USERS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
+                    ]
+                else:    
+                    btn = [
+                        [
+                            InlineKeyboardButton(
+                                text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                            ),
+                        ]
+                        for file in files
+                    ]
+
+        else:
+            if URL_MODE is True:
+                if query.from_user.id in ADMINS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+                elif query.from_user.id in MY_USERS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+                elif query.from_user.id in MZURL_PRIME_USERS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+                elif query.message.chat.id is not None and query.message.chat.id in MANIA_GROUPS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+                else:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")),
+                            InlineKeyboardButton(text=f"[{get_size(file.file_size)}]", url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")),
+                        ]
+                        for file in files
+                    ]
+            else:
+                if query.form_user.id in ADMINS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+                elif query.form_user.id in MY_USERS:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+                else:
+                    btn = [
+                        [
+                            InlineKeyboardButton(text=f"{file.file_name}",callback_data=f'files#{file.file_id}',),
+                            InlineKeyboardButton(text=f"{get_size(file.file_size)}",callback_data=f'files#{file.file_id}',),
+                        ]
+                        for file in files
+                    ]
+
+        btn.insert(0, 
+            [
+                InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ"", callback_data=f"languages#{key}"),
+            ]
+        )
+        btn.insert(0, [
+	            InlineKeyboardButton(text="⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://telegram.me/real_MoviesAdda3/18'),
+        ])
+
+        if offset != "":
+            print(f"offset => {offset}")
+            btn.append(
+                [InlineKeyboardButton(text=f"🗓 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
+                InlineKeyboardButton(text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}")]
+            )
+        else:
+            btn.append(
+                [InlineKeyboardButton(text="🗓 1/1", callback_data="pages")]
+            )
+##############################
+        try:
+            await query.edit_message_reply_markup(
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
+        except MessageNotModified:
+            pass
+        await query.answer()   
+    except Exception as e:
+        logger.error(f"Got an unexpected error : {e}")
 
 # Born to make history @Mania24SupportBot !
 @Client.on_callback_query()
@@ -974,7 +1284,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]]
             reply_markup_lzdv = InlineKeyboardMarkup(btn_lzdv) 
             reply_markup = InlineKeyboardMarkup(btn)
-            await client.send_message(int(user_id), f"🙇‍♀️ Sorry Darling! Your requested content named `{movie}` is rejected by our **ADMiN**, we are really very sorry for the inconvenience, we can't process your request at the moment...\n\n❤️‍🩹Keep your search environment friendly, sweetheart!", reply_markup=reply_markup)
+            await client.send_message(int(user_id), f"🙇‍♀️ Sorry Darling! Your requested content named `{movie}` is rejected by our **ADMIN**, we are really very sorry for the inconvenience, we can't process your request at the moment...\n\n❤️‍🩹Keep your search environment friendly, sweetheart!", reply_markup=reply_markup)
             await query.edit_message_text(text=f"- __**User notified successfully sweetie...✅**__\n\n⏳**Status** : Request Rejected ❌.\n🪪**UserID** : `{user_id}`\n🎞**Content** : `{movie}`\n\n\n🦋",reply_markup=reply_markup_lzdv)
         # Delete callback query message
             await query.answer()
@@ -1011,7 +1321,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetie\n\n{e}", show_alert=True)
             return
-        
     elif data.startswith("notify_user_custom"):
         _, user_id, movie = data.split(":")
         # Send message to user
@@ -1038,7 +1347,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetie\n\n{e}", show_alert=True)
             return
-        
+
     elif data.startswith("notify_user_req_rcvd"):
         _, user_id, movie = data.split(":")
         # Send message to user
@@ -1058,7 +1367,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         [InlineKeyboardButton(text=f"😒Not Available", callback_data=f"notify_user_not_avail:{user_id}:{movie}"),InlineKeyboardButton("📃Write Reply", callback_data=f"notify_user_custom:{user_id}:{movie}")],
                         [InlineKeyboardButton("❌Reject Req", callback_data=f"notify_user_req_rejected:{user_id}:{movie}")]
                        ]
-            reply_markup_lzdv = InlineKeyboardMarkup(btn_lzdv) 
+            reply_markup_lzdv = InlineKeyboardMarkup(btn_lzdv)
             reply_markup = InlineKeyboardMarkup(btn)
             await client.send_message(int(user_id), f"💞Hello sweetheart ! we have recieved your request for  `{movie}`... \n\nPlease keep some patience, we will upload it as soon as possible. \n❤ Thank u for your Love .❤", reply_markup=reply_markup)
             await query.edit_message_text(text=f"- __**User notified successfully sweetie...✅**__\n\n⏳**Status** : Request Recieved 🖊.\n🪪**UserID** : `{user_id}`\n🎞**Content** : `{movie}`\n\n\n🦋",reply_markup=reply_markup_lzdv)
@@ -1069,7 +1378,70 @@ async def cb_handler(client: Client, query: CallbackQuery):
             print(e)  # print the error message
             await query.answer(f"☣something went wrong sweetie\n\n{e}", show_alert=True)
             return
-        
+
+    #Adding This feature to the bot to get the controls over the groups  
+    elif query.data.startswith("verify_mania_group"):
+        _, chatTitle, chatID = query.data.split(":")
+        print(f"Debug: query.data={query.data}, chatID={chatID}, chatTitle={chatTitle}")
+        try:
+            await client.send_message(chatID, text=f"Hello users !\n From now i will provide you contents 24X7 💘")
+            await db.verify_mania_chat(int(chatID))
+            temp.MANIA_VERIFIED_CHATS.append(int(chatID))
+            btn = [
+                [
+                InlineKeyboardButton(text=f"🚫 BAN Chat 🤐", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
+            ],[
+                InlineKeyboardButton(text=f"❌ Close ❌", callback_data="close_data")
+            ]
+            ]
+            reply_markup = InlineKeyboardMarkup(btn)
+            ms = await query.edit_message_text(f"**🍁 Chat successfully verified 🧡**\n\n**Chat ID**: {chatID}\n**Chat Title**:{chatTitle}", reply_markup=reply_markup)
+        except Exception as e:
+            ms.edit(f"Got a Mania error:\n{e}" )
+            logger.error(f"Please solve this Error Mania Bro : {e}")
+    
+    elif query.data.startswith("bangrpchat"):
+        _, chatTitle, chatID = query.data.split(":")
+        print(f"Debug: query.data={query.data}, chatID={chatID}, chatTitle={chatTitle}")
+        try:
+            await client.send_message(chatID, text=f"Oops! Sorry, Let's Take a break\nThis is my last and Good Bye message to you all. \n\nContact my admin for more info")
+            await db.disable_chat(int(chatID))
+            temp.BANNED_CHATS.append(int(chatID))
+            btn = [
+                [
+                InlineKeyboardButton(text=f"⚡ Enable Chat 🍁", callback_data=f"enablemaniachat:{chatTitle}:{chatID}")
+            ],[
+                InlineKeyboardButton(text=f"❌ Close ❌", callback_data="close_data")
+            ]
+            ]
+            reply_markup = InlineKeyboardMarkup(btn)
+            ms = await query.edit_message_text(f"**chat successfully disabled** ✅\n\n**Chat ID**: {chatID}\n\n**Chat Title**:{chatTitle}", reply_markup=reply_markup)
+        except Exception as e:
+            ms.edit(f"Got a Mania error:\n{e}" )
+            logger.error(f"Please solve this Error Mania Bro : {e}")
+    
+    elif query.data.startswith("enablemaniachat"):
+        _, chatTitle , chatID = query.data.split(":")
+        print(f"Debug: query.data={query.data}, chatID={chatID}, chatTitle={chatTitle}")
+        try:
+            sts = await db.get_chat(int(chatID))
+            if not sts:
+                return await query.answer("Chat Not Found In DB !", show_alert=True)
+            if not sts.get('is_disabled'):
+                return await query.answer('This chat is not yet disabled.', show_alert=True)
+            await db.re_enable_chat(int(chatID))
+            temp.BANNED_CHATS.remove(int(chatID))
+            btn = [[
+                    InlineKeyboardButton(text=f"😜 BAN Again 😂", callback_data=f"bangrpchat:{chatTitle}:{chatID}")
+                ],[
+                    InlineKeyboardButton(text=f"❌ Close ❌", callback_data="close_data")
+            ]]
+            reply_markup = InlineKeyboardMarkup(btn)
+            ms = await query.edit_message_text(f"**chat successfully Enabled** 💞\n\n**Chat ID**: {chatID}\n\n**Chat Title**:{chatTitle}", reply_markup=reply_markup)
+        except Exception as e:
+            ms.edit(f"Got a Mania error:\n{e}" )
+            logger.error(f"Please solve this Error Mania Bro : {e}")
+
     elif query.data == "coct":
         buttons = [[
             InlineKeyboardButton('🚪 Back', callback_data='help')
@@ -1310,6 +1682,10 @@ async def auto_filter(client, msg, spoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
     pre = 'filep' if settings['file_secure'] else 'file'
+    key = f"{message.chat.id}-{message.id}"
+    FRESH[key] = search
+    temp.GETALL[key] = files
+    temp.SHORT[message.from_user.id] = message.chat.id
     if settings["button"]:
             if URL_MODE is True:
                 if message.from_user.id in ADMINS:
@@ -1454,12 +1830,18 @@ async def auto_filter(client, msg, spoll=False):
                     ]
                     for file in files
                 ]
-
+    
     btn.insert(0,
         [ 
-	    InlineKeyboardButton(text="⚡ʜᴏᴡ to ᴅᴏᴡɴʟᴏᴀᴅ⚡", url='https://telegram.me/Updated_Mania/7'),
+        InlineKeyboardButton("ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ "ғɪʟᴛᴇʀ ʟᴀɴɢᴜᴀɢᴇ ʕʘ̅͜ʘ̅ʔ", callback_data=f"languages#{key}"),
         ] 
     )
+    btn.insert(0,
+        [ 
+	    InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME,url=DOWNLOAD_TEXT_URL),
+        ] 
+    )
+
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         BUTTONS[key] = search

@@ -48,9 +48,10 @@ async def Mania_start():
     await initialize_clients()
     if ON_HEROKU:
         asyncio.create_task(ping_server())
-    b_users, b_chats = await db.get_banned()
+    b_users, b_chats , mz_verified = await db.get_banned()
     temp.BANNED_USERS = b_users
     temp.BANNED_CHATS = b_chats
+    temp.MANIA_VERIFIED_CHATS = mz_verified
     await Media.ensure_indexes()
     me = await MoviezKattaBot.get_me()
     temp.ME = me.id

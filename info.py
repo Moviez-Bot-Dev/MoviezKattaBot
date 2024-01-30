@@ -45,6 +45,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
+MANIA_GROUP_LOGS = int(environ.get('MANIA_GROUP_LOGS', 0))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'Mania24SupportBot')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "True")), True)
@@ -135,6 +136,12 @@ LOGGER = logging
 maniadownloaders = [int(maniadownloaders) if id_pattern.search(maniadownloaders) else maniadownloaders for maniadownloaders in environ.get('PRIME_DOWNLOADERS', '').split()]
 PRIME_DOWNLOADERS = (maniadownloaders) if maniadownloaders else []
 
+
+# Adding Language Feature : 
+LANGUAGES = ["hindi", "hin", "english", "eng", "korean", "kor", "urdu", "urd","chinese","chin","tamil", "tam", "malayalam", "mal",  "telugu", "tel", "kannada", "kan"]
+MAX_B_TN = environ.get("MAX_B_TN", "10")
+MAX_BTN = is_enabled((environ.get('MAX_BTN', "True")), True)
+
 # Auto Delete For Group Message (Self Delete) #
 SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 300))
 SELF_DELETE = environ.get('SELF_DELETE', True)
@@ -142,8 +149,8 @@ if SELF_DELETE == "True":
     SELF_DELETE = True
 
 # Download Tutorial Button #
-DOWNLOAD_TEXT_NAME = "📥 HOW TO DOWNLOAD 📥"
-DOWNLOAD_TEXT_URL = "https://t.me/Updated_Mania/9"
+DOWNLOAD_TEXT_NAME = "⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ 📥"
+DOWNLOAD_TEXT_URL = "https://t.me/Updated_Mania/39?single"
 
 # Custom Caption Under Button #
 CAPTION_BUTTON = "Get Updates"

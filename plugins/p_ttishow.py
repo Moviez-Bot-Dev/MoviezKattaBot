@@ -8,7 +8,7 @@ from utils import get_size, temp, get_settings
 from Script import script
 from pyrogram.errors import ChatAdminRequired
 
-"""-----------------------------------------https://t.me/Updated_Mania --------------------------------------"""
+"""-----------------------------------------https://t.me/Netflix_Bollywood_Movie_Series --------------------------------------"""
 
 @Client.on_message(filters.new_chat_members & filters.group)
 async def save_group(bot, message):
@@ -37,14 +37,14 @@ async def save_group(bot, message):
             return
         buttons = [[
             InlineKeyboardButton('🤥 Help', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            InlineKeyboardButton('🔔 Updates', url='https://t.me/Updated_Mania')
+            InlineKeyboardButton('🔔 Updates', url='https://t.me/Netflix_Bollywood_Movie_Series')
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
         await message.reply_text(
             text=f"<b>Thank you For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
 
-        # GROUP ACTIONS IN CONTROL => Coded By TG@Updated_Mania with love ❣️
+        # GROUP ACTIONS IN CONTROL => Coded By TG@Netflix_Bollywood_Movie_Series with love ❣️
         chatID = message.chat.id
         chatTitle = message.chat.title
         mz_buttons = [
@@ -185,7 +185,7 @@ async def gen_invite(bot, message):
 
 @Client.on_message(filters.command('ban') & filters.user(ADMINS))
 async def ban_a_user(bot, message):
-    # https://t.me/Updated_Mania
+    # https://t.me/Netflix_Bollywood_Movie_Series
     if len(message.command) == 1:
         return await message.reply('Give me a user id / username')
     r = message.text.split(None)
@@ -252,7 +252,7 @@ async def unban_a_user(bot, message):
     
 @Client.on_message(filters.command('users') & filters.user(ADMINS))
 async def list_users(bot, message):
-    # https://t.me/Updated_Mania
+    # https://t.me/Netflix_Bollywood_Movie_Series
     raju = await message.reply('Getting List Of Users')
     users = await db.get_all_users()
     out = "Users Saved In DB Are:\n\n"

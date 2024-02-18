@@ -50,9 +50,9 @@ SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'Mania24SupportBot')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "True")), True)
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "False")), False)
-CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "⚡<b>File uploaded by [Moviez Mania Team™](https://t.me/Updated_Mania)</b>⚡\n\n🎦 <b>File Name: </b> ➥  <i>{file_name}</i>\n⚙️ <b>Size: </b><i>{file_size}</i>\n\n                ❤️<b>WE LOVE YOU</b>❤️\n🔥  ↭ <b>Join Now [Moviez Mania Team™](https://t.me/Updated_Mania)</b> ↭  🔥")
+CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "⚡<b>File uploaded by [Moviez Mania Team™](https://t.me/Netflix_Bollywood_Movie_Series)</b>⚡\n\n🎦 <b>File Name: </b> ➥  <i>{file_name}</i>\n⚙️ <b>Size: </b><i>{file_size}</i>\n\n                ❤️<b>WE LOVE YOU</b>❤️\n🔥  ↭ <b>Join Now [Moviez Mania Team™](https://t.me/Netflix_Bollywood_Movie_Series)</b> ↭  🔥")
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
-IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>Your Query: {query}</b> \n‌‌‌‌IMDb Data by: @Updated_Mania \n\n🏷 Title: <a href={url}>{title}</a>\n🎭 Genres: {genres}\n📆 Year: <a href={url}/releaseinfo>{year}</a>\n🌟 Rating: <a href={url}/ratings>{rating}</a> / 10 \n\n♥️ we are nothing without you ♥️ \n\n💛 Please Share Us 💛\n\n⚠️Click on the button 👇 below to get your query privately")
+IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>Your Query: {query}</b> \n‌‌‌‌IMDb Data by: @Netflix_Bollywood_Movie_Series \n\n🏷 Title: <a href={url}>{title}</a>\n🎭 Genres: {genres}\n📆 Year: <a href={url}/releaseinfo>{year}</a>\n🌟 Rating: <a href={url}/ratings>{rating}</a> / 10 \n\n♥️ we are nothing without you ♥️ \n\n💛 Please Share Us 💛\n\n⚠️Click on the button 👇 below to get your query privately")
 LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False"), False)
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), False)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
@@ -71,10 +71,10 @@ MANIA_RENAMERS = (mania_renamers + ADMINS) if mania_renamers else []
 REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
 
 ADMIN_USRNM = environ.get('ADMIN_USRNM','X_Mania_X') # WITHOUT @
-MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Updated_Mania') # WITHOUT @
-DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Updated_Mania') # WITHOUT @
+MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Netflix_Bollywood_Movie_Series') # WITHOUT @
+DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Netflix_Bollywood_Movie_Series') # WITHOUT @
 MANIA_IG_HANDLE = environ.get('MANIA_IG_HANDLE','Movie_Z_Mania')  # WITHOUT @ [  add only handle - don't add full url  ] 
-MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "Mania_Request") #[ without @ ]
+MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "Find_Movie_Series_Request_Group") #[ without @ ]
 
 # Url Shortner
 URL_MODE = is_enabled((environ.get("URL_MODE","True")), False)
@@ -150,11 +150,11 @@ if SELF_DELETE == "True":
 
 # Download Tutorial Button #
 DOWNLOAD_TEXT_NAME = "⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ 📥"
-DOWNLOAD_TEXT_URL = "https://t.me/Updated_Mania/39?single"
+DOWNLOAD_TEXT_URL = "https://t.me/Netflix_Bollywood_Movie_Series/39?single"
 
 # Custom Caption Under Button #
 CAPTION_BUTTON = "Ⓑⓤⓨ Ⓟⓡⓔⓜⓘⓤⓜ"
-CAPTION_BUTTON_URL = "https://t.me/Updated_Mania/41?single"
+CAPTION_BUTTON_URL = "https://t.me/Netflix_Bollywood_Movie_Series/41?single"
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")

@@ -30,7 +30,7 @@
 
 ## Variables
 
-Read [this](https://telegram.dog/Updated_Mania/7) before you start messing up with your edits.
+Read [this](https://telegram.dog/Netflix_Bollywood_Movie_Series) before you start messing up with your edits.
 
 ### Required Variables
 * `BOT_TOKEN`: Create a bot using [@BotFather](https://telegram.dog/BotFather), and get the Telegram API token.
@@ -137,6 +137,7 @@ python3 bot.py
 • /info - ɢᴇᴛ ᴜsᴇʀ ɪɴғᴏ. 
 • /id - ɢᴇᴛ ᴛɢ ɪᴅs.
 • /imdb - ғᴇᴛᴄʜ ɪɴғᴏ ғʀᴏᴍ ɪᴍᴅʙ.
+• /setskip - ᴛᴏ sᴋɪᴘ ɴᴜᴍʙᴇʀ ᴏғ ᴍᴇssᴀɢᴇs ᴡʜᴇɴ ɪɴᴅᴇxɪɴɢ ғɪʟᴇs.
 • /users - ᴛᴏ ɢᴇᴛ ʟɪsᴛ ᴏғ ᴍʏ ᴜsᴇʀs ᴀɴᴅ ɪᴅs.
 • /chats - ᴛᴏ ɢᴇᴛ ʟɪsᴛ ᴏғ ᴛʜᴇ ᴍʏ ᴄʜᴀᴛs ᴀɴᴅ ɪᴅs.
 • /index - ᴛᴏ ᴀᴅᴅ ғɪʟᴇs ғʀᴏᴍ ᴀ ᴄʜᴀɴɴᴇʟ.
@@ -161,7 +162,7 @@ python3 bot.py
 ```
 ## Support
 [![telegram badge](https://img.shields.io/badge/Telegram-Group-30302f?style=flat&logo=telegram)](https://telegram.dog/Moviez_Get_Mania)
-[![telegram badge](https://img.shields.io/badge/Telegram-Channel-30302f?style=flat&logo=telegram)](https://telegram.dog/Updated_Mania)
+[![telegram badge](https://img.shields.io/badge/Telegram-Channel-30302f?style=flat&logo=telegram)](https://telegram.dog/Netflix_Bollywood_Movie_Series)
 
 ## Credits 
 * [![MoviezKattaBot-Devs](https://img.shields.io/static/v1?label=MoviezKattaBot&message=devs&color=critical)](https://telegram.dog/Mania24SupportBot)
@@ -180,7 +181,7 @@ python3 bot.py
 
 ### Note
 
-[Join Main Channel](https://telegram.dog/Updated_Mania): Moviez Mania Updates 🎁
+[Join Main Channel](https://telegram.dog/Netflix_Bollywood_Movie_Series): Moviez Mania Updates 🎁
 
 
 #### 🧡 Respecting... 🧡

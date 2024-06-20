@@ -2,13 +2,13 @@ class script(object):
     START_TXT = """Hello {},
 Myself <a href=https://t.me/{}>{}</a>,\n\nTrust me ! I can't even imagine how super-fast i can drive your Database channel \n\nAre you ready for Long Drive Sweetheart...🤪"""
     MZTHMB_TEXT = """Hello {},
-Glad to see you here. It seems that you really love <a href=https://t.me/Netflix_Bollywood_Movie_Series >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Netflix_Bollywood_Movie_Series>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
+Glad to see you here. It seems that you really love <a href=https://t.me/Paradise_Moviez >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Paradise_Moviez>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
     """
     MZLINK_TEXT = """Hey {},
-Glad to see you here. It seems that you really love <a href=https://t.me/Netflix_Bollywood_Movie_Series >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Netflix_Bollywood_Movie_Series>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
+Glad to see you here. It seems that you really love <a href=https://t.me/Paradise_Moviez >Moviez Mania Updates</a> work.\n\n<b>Thumbnail extracting</b> feature will be available soon, please join <a href=https://t.me/Paradise_Moviez>Dev Channel</a> and stay tuned for next <a href=https://t.me/Mania24SupportBot>Feedback</a>.\n\n  🐞 Report Bug here: <a href=http://t.me/Mania24SupportBot>Mania 24 Support</a>
     """
     DNT_TEXT = """Hey sweetie {},
-Thanks for thinking about us.\nIt seems that you really love <a href=https://t.me/Netflix_Bollywood_Movie_Series >Moviez Mania Updates</a> work.\n\n<b>For your kind information, we do not ask or force anyone for any kind of payment</b>. But if you really want to donate us then you can send money to us from below links...\n\n💵 Reach Donation Page : <a href=http://t.me/Netflix_Bollywood_Movie_Series/5>Click here...</a>\n\n❤️Thank you so much..
+Thanks for thinking about us.\nIt seems that you really love <a href=https://t.me/Paradise_Moviez >Moviez Mania Updates</a> work.\n\n<b>For your kind information, we do not ask or force anyone for any kind of payment</b>. But if you really want to donate us then you can send money to us from below links...\n\n💵 Reach Donation Page : <a href=http://t.me/Paradise_Moviez/40>Click here...</a>\n\n❤️Thank you so much..
     """
     REQ_AUTH_TEXT = """Hello {},
 \nSorry sweetie.. You must have to be the Authentic User to complete this operation...\n\n👮‍♀ REPORT ISSUE HERE: <a href=https://t.me/Mania24SupportBot>Mania 24 Support</a>\n\n
@@ -75,7 +75,7 @@ Here is the help for my COMMANDS."""
 ✯ ʟᴀɴɢᴜᴀɢᴇ: PYTHON 3
 ✯ ᴅᴀᴛᴀ ʙᴀsᴇ: MONGO DB
 ✯ ʙᴏᴛ sᴇʀᴠᴇʀ: RENDER
-✯ ʙᴜɪʟᴅ sᴛᴀᴛᴜs: v1.0.0 [ ʙᴇᴛᴀ ]"""
+✯ ʙᴜɪʟᴅ sᴛᴀᴛᴜs: v1.1 [ ʙᴇᴛᴀ ]"""
     SOURCE_TXT = """<b>NOTE:</b>
 - Moviez Katta is an open source project. 
 - Source - https://github.com/Moviez-Bot-Dev/MoviezKattaBot  
@@ -106,7 +106,7 @@ Here is the help for my COMMANDS."""
 3. Buttons should be properly parsed as markdown format
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https://t.me/Netflix_Bollywood_Movie_Series)</code>
+<code>[Button Text](buttonurl:https://t.me/Paradise_Moviez)</code>
 
 <b>Alert buttons:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
@@ -185,4 +185,4 @@ Name - {}
 📅 Dᴀᴛᴇ : <code>{}</code>
 ⏰ Tɪᴍᴇ : <code>{}</code>
 🌐 Tɪᴍᴇᴢᴏɴᴇ : <code>Asia/Kolkata</code>
-🛠️ Bᴜɪʟᴅ Sᴛᴀᴛᴜs: <code>v1.0.1 [ Sᴛᴀʙʟᴇ ]</code></b>"""
+🛠️ Bᴜɪʟᴅ Sᴛᴀᴛᴜs: <code>v1.1 [ Sᴛᴀʙʟᴇ ]</code></b>"""

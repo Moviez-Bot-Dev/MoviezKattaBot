@@ -71,10 +71,10 @@ MANIA_RENAMERS = (mania_renamers + ADMINS) if mania_renamers else []
 REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
 
 ADMIN_USRNM = environ.get('ADMIN_USRNM','X_Mania_X') # WITHOUT @
-MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Netflix_Bollywood_Movie_Series') # WITHOUT @
-DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Netflix_Bollywood_Movie_Series') # WITHOUT @
-MANIA_IG_HANDLE = environ.get('MANIA_IG_HANDLE','Movie_Z_Mania')  # WITHOUT @ [  add only handle - don't add full url  ] 
-MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "Find_Movie_Series_Request_Group") #[ without @ ]
+MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Paradise_Moviez') # WITHOUT @
+DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Paradise_Moviez') # WITHOUT @
+MANIA_IG_HANDLE = environ.get('MANIA_IG_HANDLE','Paradise_Designed')  # WITHOUT @ [  add only handle - don't add full url  ] 
+MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "Paradise_Req_Group") #[ without @ ]
 
 # Url Shortner
 URL_MODE = is_enabled((environ.get("URL_MODE","True")), False)
@@ -150,7 +150,7 @@ if SELF_DELETE == "True":
 
 # Download Tutorial Button #
 DOWNLOAD_TEXT_NAME = "⚡ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ 📥"
-DOWNLOAD_TEXT_URL = "https://t.me/Netflix_Bollywood_Movie_Series/39?single"
+DOWNLOAD_TEXT_URL = "https://t.me/HowToOpenParadise"
 
 # Custom Caption Under Button #
 CAPTION_BUTTON = "Ⓑⓤⓨ Ⓟⓡⓔⓜⓘⓤⓜ"

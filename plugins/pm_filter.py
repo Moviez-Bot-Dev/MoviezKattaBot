@@ -990,7 +990,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕↖️ Add Me To Your Groups ↗️➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
             InlineKeyboardButton('🧞‍♀️ Search 🧐', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🔔 Updates 🤖', url='https://t.me/Netflix_Bollywood_Movie_Series')
+            InlineKeyboardButton('🔔 Updates 🤖', url=CHNL_LNK)
         ], [
             InlineKeyboardButton('🙆🏻 Help 🦾', callback_data='help'),
             InlineKeyboardButton('♥️ About ♥️', callback_data='about')
@@ -1026,7 +1026,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton('🔔 Updates 🤖', url='https://t.me/Netflix_Bollywood_Movie_Series'),
+            InlineKeyboardButton('🔔 Updates 🤖', url=CHNL_LNK),
             InlineKeyboardButton('♥️ Source', callback_data='source')
         ], [
             InlineKeyboardButton('🏠 Home', callback_data='start'),
@@ -1189,7 +1189,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"🔍 Search Here 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
@@ -1217,7 +1217,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"🔍 Search Here 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
             ]]
@@ -1244,7 +1244,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"🔍 Search Here 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
@@ -1272,7 +1272,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"🔍 Search Here 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
             ]]
@@ -1299,7 +1299,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"🔍 Search Here 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
@@ -1326,7 +1326,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"🔍 Search Here 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
             ]]
@@ -1353,7 +1353,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                 InlineKeyboardButton(text=f"💛 Request More 💛", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
             ],[
-                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f"https://telegram.me/Mania24SupportBot")
+                InlineKeyboardButton(text=f"🐞 REPORT BUG 🐞", url=f'https://t.me/{SUPPORT_CHAT}')
             ],[
                 InlineKeyboardButton(text=f"🦋 ɪɴsᴛᴀɢʀᴀᴍ 😉", url=f"https://instagram.com/{MANIA_IG_HANDLE}")
 
